@@ -1,0 +1,63 @@
+<div>
+    <div>
+      <h4 class="text-center text-2xl uppercase my-3 py-3 border-2 bg-gray-800 text-white font-bold">Add Marks</h4>
+      <mat-form-field appearance="outline">
+        <mat-label>Select a Class</mat-label>
+        <mat-select  [(ngModel)]="selectedClasName" (ngModelChange)="onSelectClass()">
+          <mat-option></mat-option>
+          <mat-option [value]="option.courseTitle" *ngFor="let option of classes">{{ option.courseTitle }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="flex gap-5 ">
+        <a class="coursor-pointer bg-gray-800 text-white px-3 py-1 rounded" (click)="onChange(c.courseTitle)" *ngFor="let c of classes">{{c.courseTitle}}</a>
+      </div>
+    </div>
+<!--  add marks section-->
+  <div>
+    <h4 class="text-center border-b-2 border-gray-900 pb-2 font-bold text-2xl"> {{selectedClasName}}</h4>
+
+    <ng-container *ngIf="!this.subject?.length">
+     <p  class="text-center uppercase text-md font-semibold mt-5">
+       No subjects assigned to you in {{this.selectedClasName}}!
+     </p>
+    </ng-container>
+
+    <div *ngIf="this.subject?.length > 0">
+      <form [formGroup]="addMarksForm" (ngSubmit)="onSubmit()">
+        <table class="table table-bordered text-center self-center">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th >{{ this.subject[0]?.name }}</th>
+              <th>Total Marks</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody >
+          <ng-container formArrayName="marks" >
+                <tr [formGroupName]="i" *ngFor="let p of students; let i = index">
+                    <td>{{ p.student.name }}</td>
+                    <td>{{ p.student.dob | date }}</td>
+                    <td >
+                      <input type="number" class="form-control"  formControlName="marksObtained" />
+                    </td>
+                    <td >
+                     100
+                    </td>
+                    <td>edit</td>
+                </tr>
+          </ng-container>
+          </tbody>
+        </table>
+        <div class="flex gap-5">
+          <button mat-raised-button color="secondary" class="w-full mt-5 text-md" type="submit">Cancel</button>
+          <button mat-raised-button color="primary" class="w-full mt-5 text-md" type="submit">Add Marks</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<form></form>

@@ -1,0 +1,8 @@
+.mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+.mat-mdc-icon-button.mat-mdc-button-base {
+  padding: 0;
+  margin: 0;
+}

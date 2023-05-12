@@ -1,0 +1,15 @@
+
+
+<div class="p-5 w-96">
+  <h2 class="mb-3">Add Class</h2>
+  <form class="example-form flex-col flex" [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Class Name</mat-label>
+      <input type="text" matInput
+             formControlName="courseTitle"
+             placeholder="Enter class name">
+    </mat-form-field>
+    <button class="mt-3" type="submit" mat-raised-button color="primary">{{actionBtn}}</button>
+  </form>
+
+</div>
